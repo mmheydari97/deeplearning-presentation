@@ -22,7 +22,14 @@ start date 2010
 2011 to 2012 -> CNN emergence: ~10% drop in error
 Human: 5.1 -> phd candidate not a normal guy
 
+---------------------------------------- 6 ----------------------------------------
 [Lecture 5]
 First strong result: Alexnet 2012
 step back ...
+Hubel and wiesel: 1959 1962 1968 cats visual cortex
+	simple cells: response to light orientation
+	complex cells: response to light orientation and movement
+	hypercomplex cells: response to movement with and end point
+
+
 
