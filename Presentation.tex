@@ -181,7 +181,181 @@ Amirkabir University of Technology \\ % Your institution for the title page
 	\end{figure}
 
 \end{frame}
+\begin{frame}
+\frametitle{Convolution}
 
+\begin{figure}
+	\includegraphics[width=\linewidth]{Pics/cnlayer.png}
+	\caption{Convolution Layer}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Complexity of Layers output}
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{Pics/hlayer.png}
+	\caption{complexity of each layer output}
+\end{figure}
+
+\end{frame}
+\begin{frame}
+\frametitle{Closer Look }
+
+\begin{figure}
+	\includegraphics[width=.5\linewidth]{Pics/clook.png}
+	\caption{filtering example}
+\end{figure}
+
+\end{frame}
+\begin{frame}
+\frametitle{Closer Look(CONT.)}
+
+\begin{figure}
+	\includegraphics[width=.5\linewidth]{Pics/clook2.png}
+	\caption{filtering example}
+\end{figure}
+
+\end{frame}
+\begin{frame}
+\frametitle{Closer Look(CONT.)}
+
+\begin{figure}
+	\includegraphics[width=.5\linewidth]{Pics/clook3.png}
+	\caption{filtering example}
+\end{figure}
+
+\end{frame}
+\begin{frame}
+\frametitle{Closer Look(CONT.)}
+ {\color{red} IT WON'T FIT ?!!!!!!!
+ \\
+Can't apply 3*3 filter }
+\begin{figure}
+	\includegraphics[width=.5\linewidth]{Pics/clook4.png}
+	\caption{filtering example}
+\end{figure}
+
+\end{frame}
+\begin{frame}
+\frametitle{Padding}
+
+\begin{figure}
+	\includegraphics[width=.5\linewidth]{Pics/padding.png}
+	\caption{Padding}
+\end{figure}
+
+\end{frame}
+\begin{frame}
+\frametitle{Summary}
+\begin{itemize}
+	\item Accept a volume of size N x N 
+	\item requires 4 hyper parameters:
+	\begin{itemize}
+		\item Filter's spatial extent F
+		\item Filter's Stride S
+		\item Amount of zero padding P
+	\end{itemize}
+	
+     \item Produces a volume of size M X M
+     \begin{itemize}
+     	\item M = $ \frac{(N - F + 2p)}{S} + 1 $
+     	\item Number of parameters : F X F
+     \end{itemize}
+\end{itemize}
+
+\end{frame}
+\begin{frame}
+\frametitle{Pooling}
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{Pics/pooling.png}
+	\caption{Max-pooling}
+\end{figure}
+
+\end{frame}
+\begin{frame}
+\frametitle{Fully Connected Layer}
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{Pics/cexample.png}
+	\caption{Fully Connected Layer}
+\end{figure}
+
+\end{frame}
+\begin{frame}
+\frametitle{AlexNet}
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{Pics/alexnetarch.jpg}
+	\caption{AlexNet architecture}
+\end{figure}
+
+\end{frame}
+\begin{frame}
+\frametitle{Comparing different Structures}
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{Pics/comaprecnn.png}
+	\caption{Comparing Structures}
+\end{figure}
+
+\end{frame}
+\begin{frame}
+\frametitle{VGG}
+{\color{red} Deeper Networks, Smaller Filters}
+\begin{figure}
+	\includegraphics[width=.6\linewidth]{Pics/VGG.png}
+	\caption{VGG Structures}
+\end{figure}
+
+\end{frame}
+\begin{frame}
+\frametitle{Comparing}
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{Pics/compare2.png}
+	\caption{Comparing Structures}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Google Net}
+{\color{red} Deeper Networks, with computationally inexpensive}
+\begin{figure}
+	\includegraphics[width=\linewidth]{Pics/googlenet.png}
+     \caption{Googlenet Structures}
+\end{figure}
+\end{frame}
+\begin{frame}
+\frametitle{Comparing}
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{Pics/com3.png}
+	\caption{Comparing Structures}
+\end{figure}
+
+\end{frame}
+\begin{frame}
+\frametitle{ResNet}
+
+\begin{figure}
+	\includegraphics[width=.6\linewidth]{Pics/resnet.png}
+	\caption{ResNet Structures}
+\end{figure}
+
+\end{frame}
+\begin{frame}
+\frametitle{Comparing  Structures}
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{Pics/ccomplex.png}
+	\caption{Comparing Structures}
+\end{figure}
+
+\end{frame}
 %\begin{frame}
 %\frametitle{Paragraphs of Text}
 %Sed iaculis dapibus gravida. Morbi sed tortor erat, nec interdum arcu. Sed id lorem lectus. Quisque viverra augue id sem ornare non aliquam nibh tristique. Aenean in ligula nisl. Nulla sed tellus ipsum. Donec vestibulum ligula non lorem vulputate fermentum accumsan neque mollis.\\~\\
