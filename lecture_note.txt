@@ -32,4 +32,137 @@ Hubel and wiesel: 1959 1962 1968 cats visual cortex
 	hypercomplex cells: response to movement with and end point
 
 
+Gradient based learning: document recognition(zipcode) -> LeNet 1998
+architecture:	
+	conv
+	pool
+	conv
+	pool
+	FC
+	FC
+	output
+- can't be scaled to complex data
 
+---------------------------------------- 7 ----------------------------------------
+AlexNet: 2012
+first use of convNet -> biggest error change
+taking advantage of large dataset
+parallel computing with gpu
+
+---------------------------------------- 8 ----------------------------------------
+convolutional layer:
++ preserve spatial structure ...
+weights are formed as small filters sliding over the input [slughtly different with real conv]
+depth of filter corresponds with number of input channels
+stack filters to shape depth of output
+
+---------------------------------------- 9 ----------------------------------------
+first layers: low level features: edged
+mid layers: corners
+last layers: complex features: eyes
+natural way...
+
+-------------------------------------- 10-14 --------------------------------------
+what is stride?
+7*7 with 3*3 filter and stride 3 -> 1 padding
+
+---------------------------------------- 15 ----------------------------------------
+trend: number of filters power of 2
+	   filter size 3, 5, 7, ...
+1*1 filter makes sense? yes, changes depth (downsample of d)
+receptive field -> effective receptive field ...
+
+---------------------------------------- 16 ----------------------------------------
+pooling: downsample of h, w
+avg, max, ...
++ makes features bold
+trend: 2*2 with stride 2
+
+---------------------------------------- 17 ----------------------------------------
+we need FC for classification
+reason on top of spatial features
+
+---------------------------------------- 18 ----------------------------------------
+[Lecture 9]
+
+AlexNet: 2012 winner
+architecture:
+	227 * 227 * 3 input
+	conv1 96 11*11 stride 4 pad 0
+	maxpool1 3*3 stride 2
+	norm1
+	conv2 256 5*5 stride 1 pad 2
+	maxpool2 384 3*3 stride 2
+	norm2
+	conv3 384 3*3 stride 1 pad 1
+	conv4 384 3*3 stride 1 pad 1
+	conv5 256 3*3 stride 1 pad 1
+	maxpool2 3*3 stride 2
+	FC6 4096
+	FC7 4096
+	FC8 1000
+
+first use of relu
+training needs more than 3 GB -> two GPUs
+GPUs communicate through some layers
+
+---------------------------------------- 19 ----------------------------------------
+2013 winner ZFNet -> tuning AlexNet hyper parameters
+conv1: 11*11 stride 4 -> 7*7 stride 2
+conv3, 4, 5: 384, 384, 256 filters -> 512, 1024, 512
+
+---------------------------------------- 20 ----------------------------------------
+2014 winner: googleNet but VGG is interesting too.
+oxford
++ Deeper Networks with smaller filters
+	16-19 layers
+	only conv 3*3 stride1 1
+	max pool 2*2 stride 1
++ why?
+	effective receptive field is the same:
+		3 3*3 stride 1 = 7*7 conv
+		fewer parameters: 3 3^2 c^2 < 7^2 c^2
+
+- 96MB/image for forward (*2 for bwd)
+- total parameters: 138M, FCs weights: 123.6M
+- most of memory used in first conv layers
+
+---------------------------------------- 22 ----------------------------------------
+googleNet
++ compuatation efficiency
++ 22 layers
++ inception module ... detail
+
++ no FCs
++ only 5M parameters
++ 12x less than AlexNet
+
+- naive implementation:
+	- 854M ops -> 358M: using bottleneck layer -> project feature map
+	- maintain dimensions -> compuatation complexity -> 1*1 conv to control channels
+
++ bottlenecks located beside and after maxpool
++ last layer is result concatenation
++ auxiliary classification outputs to inject Gradient (vanish)
+
+---------------------------------------- 24 ----------------------------------------
+2015 winner: resNet
++ 152 layers
++ won all contests in 2015
+? getting deeper in plain CNN: error gets worse
+	- it is not overfit -> both train and test error are bad 
+	+ optimization problem with large Networks 
++ identity mapping and weights of a shallow Network -> 
+	working at least as well as shallow network 
+
++ adding residual mapping -> the model learns solution -> skip some layers
++ H(x) = F(x) + x
++ double the channels but downsample using stride 2
++ using bottleneck like googleNet
+
+training:
+	sgd + momentum
+	learning rate: 0.1 decay by 10
+	weight decay 1e-5
+	no dropout
+	
