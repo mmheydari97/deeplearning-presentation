@@ -18,7 +18,7 @@ Challenge: 1431167 images and 1000 classes -> if top 5 labels include correct th
 
 ---------------------------------------- 5 ----------------------------------------
 start date 2010
-
+why FCs are bad?
 2011 to 2012 -> CNN emergence: ~10% drop in error
 Human: 5.1 -> phd candidate not a normal guy
 
@@ -65,6 +65,7 @@ natural way...
 -------------------------------------- 10-14 --------------------------------------
 what is stride?
 7*7 with 3*3 filter and stride 3 -> 1 padding
+preserve size of image -> "same" convolution
 
 ---------------------------------------- 15 ----------------------------------------
 trend: number of filters power of 2
@@ -129,7 +130,7 @@ oxford
 
 ---------------------------------------- 22 ----------------------------------------
 googleNet
-+ compuatation efficiency
++ computation efficiency
 + 22 layers
 + inception module ... detail
 
@@ -139,7 +140,7 @@ googleNet
 
 - naive implementation:
 	- 854M ops -> 358M: using bottleneck layer -> project feature map
-	- maintain dimensions -> compuatation complexity -> 1*1 conv to control channels
+	- maintain dimensions -> computation complexity -> 1*1 conv to control channels
 
 + bottlenecks located beside and after maxpool
 + last layer is result concatenation
@@ -165,4 +166,75 @@ training:
 	learning rate: 0.1 decay by 10
 	weight decay 1e-5
 	no dropout
-	
+
+---------------------------------------- 27 ----------------------------------------
+[Lecture 11]
+so far: image classification
+more fancier -> classification + localization
+
+---------------------------------------- 28 ----------------------------------------
++ we know ahead of time: we have only 1 object of interest
++ for box: treat localization as a regression problem
+
+---------------------------------------- 29 ----------------------------------------
+same idea of predicting fix number of positions in the image -> pose estimation.
+
+---------------------------------------- 30 ----------------------------------------
+core problem in computer vision
+we don't know the number of objects
+
+---------------------------------------- 32 ----------------------------------------
+how do we choose the crops??
+	- any number of objects
+	- any location 
+	- any size
+	- any aspect ratio
+
+applying them to cnn -> computationally intractable
++ instead: region proposals using other computer vision approaches (image processing)
++ selective search: 2 sec -> 2000 proposals
++ high recall
+
+---------------------------------------- 33 ----------------------------------------
+rcnn
+- different RoI size -> warp images
+svm -> classify + Bbox reg: correct the boundings
+- fixed number of region proposals 2000 -> not able to learning
+- super slow train and test
+
+---------------------------------------- 34 ----------------------------------------
+fast rcnn
++ learnable RoI 
++ conv5 -> complex features: eye, nose ....
++ RoI pooling layer: warp -> cropping from feature map instead of picture:
+	eye + nose = face (so advanced -> simplify)
+
+- Actually there is a fix method to extract RoI from feature map
+	-> slow (2 sec in test)
+
+
+---------------------------------------- 35 ----------------------------------------
+10x faster to train: sharing computation between different feature maps
+- runtime dominated by region proposals (bottleneck)
+
+---------------------------------------- 36 ----------------------------------------
+- replace fix method with RPN (region proposals network)
+training:
+	+ a threshold of overlap of proposal with ground truth images we have (advanced)
++ can be generalized to different problems: we can train RoI part
+
+---------------------------------------- 37 ----------------------------------------
+region based detection -> accurate but slow (RCNN)
+
+---------------------------------------- 38 ----------------------------------------
+alternative: all feed forward in a single pass: YOLO, SSD
++ independent processing for each potential regions ->  
+	treat the problem like a big regression problem and 
+	predict all of objects at once using a big CNN
+
++ grid cells: 7*7
++ base bounding boxes: more than 3
+
+predict:
+	+ offset off the bounding box -> true location
+	+ classification score
