@@ -3,7 +3,7 @@
 As a result -> amount of visual data is growing
 *statistic* cisco: by 2017, roughly 80% of traffic on the internet -> video
 
-Design algorithms to utilize visula data
+Design algorithms to utilize visual data
 - Hard to understand -> DARK MATTER of the internet
 
 *statistic* Youtube: every sec. of real time 5 hours video uploaded
@@ -29,7 +29,7 @@ step back ...
 Hubel and wiesel: 1959 1962 1968 cats visual cortex
 	simple cells: response to light orientation
 	complex cells: response to light orientation and movement
-	hypercomplex cells: response to movement with and end point
+	hypercomplex cells: response to movement with an end point
 
 
 Gradient based learning: document recognition(zipcode) -> LeNet 1998
@@ -52,8 +52,8 @@ parallel computing with gpu
 ---------------------------------------- 8 ----------------------------------------
 convolutional layer:
 + preserve spatial structure ...
-weights are formed as small filters sliding over the input [slughtly different with real conv]
-depth of filter corresponds with number of input channels
+weights are formed as small filters sliding over the input [slightly different from real conv]
+depth of filter corresponds to number of input channels
 stack filters to shape depth of output
 
 ---------------------------------------- 9 ----------------------------------------
@@ -151,7 +151,7 @@ googleNet
 + 152 layers
 + won all contests in 2015
 ? getting deeper in plain CNN: error gets worse
-	- it is not overfit -> both train and test error are bad 
+	- it does not overfit -> both train and test error are bad 
 	+ optimization problem with large Networks 
 + identity mapping and weights of a shallow Network -> 
 	working at least as well as shallow network 
@@ -167,23 +167,23 @@ training:
 	weight decay 1e-5
 	no dropout
 
----------------------------------------- 27 ----------------------------------------
+---------------------------------------- 26 ----------------------------------------
 [Lecture 11]
 so far: image classification
 more fancier -> classification + localization
 
----------------------------------------- 28 ----------------------------------------
+---------------------------------------- 27 ----------------------------------------
 + we know ahead of time: we have only 1 object of interest
 + for box: treat localization as a regression problem
 
----------------------------------------- 29 ----------------------------------------
+---------------------------------------- 28 ----------------------------------------
 same idea of predicting fix number of positions in the image -> pose estimation.
 
----------------------------------------- 30 ----------------------------------------
+---------------------------------------- 29 ----------------------------------------
 core problem in computer vision
 we don't know the number of objects
 
----------------------------------------- 32 ----------------------------------------
+---------------------------------------- 31 ----------------------------------------
 how do we choose the crops??
 	- any number of objects
 	- any location 
@@ -195,14 +195,14 @@ applying them to cnn -> computationally intractable
 + selective search: 2 sec -> 2000 proposals
 + high recall
 
----------------------------------------- 33 ----------------------------------------
+---------------------------------------- 32 ----------------------------------------
 rcnn
 - different RoI size -> warp images
 svm -> classify + Bbox reg: correct the boundings
 - fixed number of region proposals 2000 -> not able to learning
 - super slow train and test
 
----------------------------------------- 34 ----------------------------------------
+---------------------------------------- 33 ----------------------------------------
 fast rcnn
 + learnable RoI 
 + conv5 -> complex features: eye, nose ....
@@ -213,23 +213,23 @@ fast rcnn
 	-> slow (2 sec in test)
 
 
----------------------------------------- 35 ----------------------------------------
+---------------------------------------- 34 ----------------------------------------
 10x faster to train: sharing computation between different feature maps
 - runtime dominated by region proposals (bottleneck)
 
----------------------------------------- 36 ----------------------------------------
+---------------------------------------- 35 ----------------------------------------
 - replace fix method with RPN (region proposals network)
 training:
 	+ a threshold of overlap of proposal with ground truth images we have (advanced)
 + can be generalized to different problems: we can train RoI part
 
----------------------------------------- 37 ----------------------------------------
+---------------------------------------- 36 ----------------------------------------
 region based detection -> accurate but slow (RCNN)
 
----------------------------------------- 38 ----------------------------------------
+---------------------------------------- 37 ----------------------------------------
 alternative: all feed forward in a single pass: YOLO, SSD
 + independent processing for each potential regions ->  
-	treat the problem like a big regression problem and 
+	treat the problem as a big regression problem and 
 	predict all of objects at once using a big CNN
 
 + grid cells: 7*7

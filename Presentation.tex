@@ -5,8 +5,9 @@
 }
 \usepackage{graphicx}
 \usepackage{booktabs} 
+\usepackage{wrapfig}
 
-\title[YOLO]{Computer Vision with CNN}
+\title[CNNs]{Computer Vision with CNN}
 
 \author{Behnia - Heydari}
 \institute[AUT]
@@ -63,7 +64,7 @@ Amirkabir University of Technology \\
 \end{figure}
 \end{frame}
 
-\section{From Cat's Brain to ResNet}
+\section{From Cat's Brain to ResNet (Classification)}
 \begin{frame}
 \frametitle{Cat's Brain}
 \begin{columns}[c]
@@ -163,9 +164,10 @@ Amirkabir University of Technology \\
 		\item Filter's spatial extent F
 		\item Filter's Stride S
 		\item Amount of zero padding P
+		\item Number of kernels ($\times depth \times$)
 	\end{itemize}
 	
-     \item Produces a volume of size M X M
+     \item Produces a volume of size $M \times M$
      \begin{itemize}
      	\item M = $ \frac{(N - F + 2p)}{S} + 1 $
      	\item Number of parameters : $ (F \times F \times D + b) \times k $
@@ -228,14 +230,17 @@ Amirkabir University of Technology \\
 
 \end{frame}
 
-\begin{frame}
-\frametitle{Google Net}
-{\color{red} Deeper Networks, with computationally inexpensive}
+\begin{frame}[fragile]
+\frametitle{GoogLeNet}
+{\color{red} Make deeper networks computationally inexpensive}
 \begin{figure}
-	\includegraphics[width=\linewidth]{Pics/googlenet.png}
-     \caption{Googlenet Structures}
+	\includegraphics[height=0.3\textheight]{Pics/googlenet.png}
+\end{figure}
+\begin{figure}
+	\includegraphics[height=0.4\textheight]{Pics/inception.jpg}
 \end{figure}
 \end{frame}
+
 \begin{frame}
 \frametitle{Comparing}
 
@@ -250,7 +255,7 @@ Amirkabir University of Technology \\
 
 \begin{figure}
 	\includegraphics[width=.6\linewidth]{Pics/resnet.png}
-	\caption{ResNet Structures}
+	\caption{ResNet Architecture}
 \end{figure}
 
 \end{frame}
@@ -260,21 +265,14 @@ Amirkabir University of Technology \\
 
 \begin{figure}
 	\includegraphics[width=\linewidth]{Pics/ccomplex.png}
-	\caption{Comparing Structures}
+	\caption{Comparison}
 \end{figure}
 
 \end{frame}
-\begin{frame}
-	\frametitle{ResNet}
 	
-	\begin{figure}
-		\includegraphics[width=.6\linewidth]{Pics/resnet.png}
-		\caption{ResNet Structures}
-	\end{figure}
-	
-\end{frame}
+\section{Localization}
 \begin{frame}
-	\frametitle{Class + Location}
+	\frametitle{Computer Vision Tasks}
 	
 	\begin{figure}
 		\includegraphics[width=\linewidth]{Pics/classloc.PNG}
@@ -283,11 +281,9 @@ Amirkabir University of Technology \\
 	
 \end{frame}
 \begin{frame}
-	\frametitle{Class + Location}
-	
+	\frametitle{Classification + Localization}
 	\begin{figure}
 		\includegraphics[width=\linewidth]{Pics/loc2.PNG}
-
 	\end{figure}
 	
 \end{frame}
@@ -296,12 +292,13 @@ Amirkabir University of Technology \\
 	
 	\begin{figure}
 		\includegraphics[width=\linewidth]{Pics/humanpose.PNG}
-		
+		\caption{Body pose estimation}
 	\end{figure}
 	
+\section{Object Detection}
 \end{frame}
 \begin{frame}
-	\frametitle{Object detection}
+	\frametitle{Fancier Task}
 	
 	\begin{figure}
 		\includegraphics[width=\linewidth]{Pics/detect1.PNG}
@@ -311,10 +308,9 @@ Amirkabir University of Technology \\
 \end{frame}
 \begin{frame}
 	\frametitle{Object detection}
-	
 	\begin{figure}
 		\includegraphics[width=\linewidth]{Pics/objectdetect.PNG}
-		
+		\caption{{\color{red}New approach is needed}}
 	\end{figure}
 	
 \end{frame}
