@@ -9,20 +9,20 @@ Design algorithms to utilize visual data
 *statistic* Youtube: every sec. of real time 5 hours video uploaded
 - Can't deal with it manually
 
----------------------------------------- 4 ----------------------------------------
+---------------------------------------- 9 ----------------------------------------
 - Visual data: complex -> huge learning parameters -> not enough data -> overfit
 IMAGENET: 22K categories and 14M images 3 years work -> biggest in 2009
 Amazon -> help: sort, clean and label
 
 Challenge: 1431167 images and 1000 classes -> if top 5 labels include correct then success
 
----------------------------------------- 5 ----------------------------------------
+---------------------------------------- 10 ----------------------------------------
 start date 2010
 why FCs are bad?
 2011 to 2012 -> CNN emergence: ~10% drop in error
 Human: 5.1 -> phd candidate not a normal guy
 
----------------------------------------- 6 ----------------------------------------
+---------------------------------------- 11 ----------------------------------------
 [Lecture 5]
 First strong result: Alexnet 2012
 step back ...
@@ -43,26 +43,20 @@ architecture:
 	output
 - can't be scaled to complex data
 
----------------------------------------- 7 ----------------------------------------
-AlexNet: 2012
-first use of convNet -> biggest error change
-taking advantage of large dataset
-parallel computing with gpu
-
----------------------------------------- 8 ----------------------------------------
+---------------------------------------- 13 ----------------------------------------
 convolutional layer:
 + preserve spatial structure ...
 weights are formed as small filters sliding over the input [slightly different from real conv]
 depth of filter corresponds to number of input channels
 stack filters to shape depth of output
 
----------------------------------------- 9 ----------------------------------------
+---------------------------------------- 14-15 ----------------------------------------
 first layers: low level features: edged
 mid layers: corners
 last layers: complex features: eyes
 natural way...
 
--------------------------------------- 10-14 --------------------------------------
+-------------------------------------- 16-20 --------------------------------------
 what is stride?
 7*7 with 3*3 filter and stride 3 -> 1 padding
 preserve size of image -> "same" convolution
@@ -70,20 +64,29 @@ preserve size of image -> "same" convolution
 ---------------------------------------- 15 ----------------------------------------
 trend: number of filters power of 2
 	   filter size 3, 5, 7, ...
-1*1 filter makes sense? yes, changes depth (downsample of d)
-receptive field -> effective receptive field ...
 
----------------------------------------- 16 ----------------------------------------
+receptive field -> effective receptive field
+
+---------------------------------------- 23 ----------------------------------------
 pooling: downsample of h, w
 avg, max, ...
 + makes features bold
 trend: 2*2 with stride 2
 
----------------------------------------- 17 ----------------------------------------
+---------------------------------------- 24 ----------------------------------------
 we need FC for classification
 reason on top of spatial features
 
----------------------------------------- 18 ----------------------------------------
+---------------------------------------- 26 ----------------------------------------
+AlexNet: 2012
+first use of convNet -> biggest error change
+taking advantage of large dataset
+parallel computing with gpu
+first use of relu
+training needs more than 3 GB -> two GPUs
+GPUs communicate through some layers
+
+---------------------------------------- 27 ----------------------------------------
 [Lecture 9]
 
 AlexNet: 2012 winner
@@ -103,22 +106,17 @@ architecture:
 	FC7 4096
 	FC8 1000
 
-first use of relu
-training needs more than 3 GB -> two GPUs
-GPUs communicate through some layers
-
----------------------------------------- 19 ----------------------------------------
 2013 winner ZFNet -> tuning AlexNet hyper parameters
 conv1: 11*11 stride 4 -> 7*7 stride 2
 conv3, 4, 5: 384, 384, 256 filters -> 512, 1024, 512
 
----------------------------------------- 20 ----------------------------------------
+---------------------------------------- 28-29 ----------------------------------------
 2014 winner: googleNet but VGG is interesting too.
 oxford
 + Deeper Networks with smaller filters
 	16-19 layers
-	only conv 3*3 stride1 1
-	max pool 2*2 stride 1
+	only conv 3*3 stride 1
+	max pool 2*2 stride 2
 + why?
 	effective receptive field is the same:
 		3 3*3 stride 1 = 7*7 conv
@@ -128,15 +126,15 @@ oxford
 - total parameters: 138M, FCs weights: 123.6M
 - most of memory used in first conv layers
 
----------------------------------------- 22 ----------------------------------------
+---------------------------------------- 30-31 ----------------------------------------
 googleNet
 + computation efficiency
 + 22 layers
-+ inception module ... detail
-
 + no FCs
 + only 5M parameters
 + 12x less than AlexNet
++ inception module ...
+
 
 - naive implementation:
 	- 854M ops -> 358M: using bottleneck layer -> project feature map
@@ -146,7 +144,7 @@ googleNet
 + last layer is result concatenation
 + auxiliary classification outputs to inject Gradient (vanish)
 
----------------------------------------- 24 ----------------------------------------
+---------------------------------------- 32-34 ----------------------------------------
 2015 winner: resNet
 + 152 layers
 + won all contests in 2015
@@ -167,23 +165,23 @@ training:
 	weight decay 1e-5
 	no dropout
 
----------------------------------------- 26 ----------------------------------------
+---------------------------------------- 37 ----------------------------------------
 [Lecture 11]
 so far: image classification
 more fancier -> classification + localization
 
----------------------------------------- 27 ----------------------------------------
+---------------------------------------- 38 ----------------------------------------
 + we know ahead of time: we have only 1 object of interest
 + for box: treat localization as a regression problem
 
----------------------------------------- 28 ----------------------------------------
+---------------------------------------- 39 ----------------------------------------
 same idea of predicting fix number of positions in the image -> pose estimation.
 
----------------------------------------- 29 ----------------------------------------
+---------------------------------------- 40 ----------------------------------------
 core problem in computer vision
 we don't know the number of objects
 
----------------------------------------- 31 ----------------------------------------
+---------------------------------------- 41-42 ----------------------------------------
 how do we choose the crops??
 	- any number of objects
 	- any location 
@@ -195,14 +193,14 @@ applying them to cnn -> computationally intractable
 + selective search: 2 sec -> 2000 proposals
 + high recall
 
----------------------------------------- 32 ----------------------------------------
+---------------------------------------- 43 ----------------------------------------
 rcnn
 - different RoI size -> warp images
 svm -> classify + Bbox reg: correct the boundings
 - fixed number of region proposals 2000 -> not able to learning
 - super slow train and test
 
----------------------------------------- 33 ----------------------------------------
+---------------------------------------- 44 ----------------------------------------
 fast rcnn
 + learnable RoI 
 + conv5 -> complex features: eye, nose ....
@@ -213,20 +211,20 @@ fast rcnn
 	-> slow (2 sec in test)
 
 
----------------------------------------- 34 ----------------------------------------
+---------------------------------------- 45 ----------------------------------------
 10x faster to train: sharing computation between different feature maps
 - runtime dominated by region proposals (bottleneck)
 
----------------------------------------- 35 ----------------------------------------
+---------------------------------------- 46 ----------------------------------------
 - replace fix method with RPN (region proposals network)
 training:
 	+ a threshold of overlap of proposal with ground truth images we have (advanced)
 + can be generalized to different problems: we can train RoI part
 
----------------------------------------- 36 ----------------------------------------
+---------------------------------------- 47 ----------------------------------------
 region based detection -> accurate but slow (RCNN)
 
----------------------------------------- 37 ----------------------------------------
+---------------------------------------- 48 ----------------------------------------
 alternative: all feed forward in a single pass: YOLO, SSD
 + independent processing for each potential regions ->  
 	treat the problem as a big regression problem and 
